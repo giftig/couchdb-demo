@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  couchdb:
+    image: klaemo/couchdb:latest
+    volumes:
+      - ./data:/usr/local/etc/couchdb
+      - ./logs:/usr/local/var/log/couchdb
+    ports:
+      - 5984:5984

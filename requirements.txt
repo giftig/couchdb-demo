@@ -1,0 +1,3 @@
+couchdb>=1.2
+gpretty>=0.1.2
+requests>=2.20.1

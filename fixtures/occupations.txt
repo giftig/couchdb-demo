@@ -1,0 +1,25 @@
+assassin
+bailiff
+baker
+bishop
+cardinal
+doctor
+farmer
+guitarist
+horticulture expert
+idiot
+killer
+lemonade stall worker
+murderer
+noose-maker
+onion seller
+pianist
+police constable
+queen
+robotic butler
+servant
+tailor
+uniform maker
+violinist
+wait staff
+zebra tamer
