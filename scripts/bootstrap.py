@@ -216,15 +216,27 @@ class Command(ColourMixin):
 
         visits_2016 = list(
             self.db.view(
-                'tests/visits_by_timestamp', reduce=True, group=False,
+                'tests/visits_by_timestamp_by_ip', reduce=True, group=False,
                 inclusive_end=False, limit=1
-            )['2016-01-01 00:00:00':'2017-01-01 00:00:00']
+            )[['2016-01-01 00:00:00', {}]:['2017-01-01 00:00:00', None]]
         )[0].value
+
+        last_visitor = list(
+            self.db.view(
+                'tests/visits_by_timestamp_by_ip', descending=True,
+                reduce=False, include_docs=True, limit=1
+            )
+        )[0]
+        last_visitor = (
+            last_visitor.doc['name'],
+            last_visitor.key[1]
+        )
 
         print self.colourise('Observations for our generated data:')
         print '  - %d customers have the surname "Williams"' % williams
         print '  - %d customers are children' % kids
         print '  - %d visits occurred in 2016' % kids
+        print '  - The latest visit is from %s (%s)' % last_visitor
 
     def run(self, *args, **kwargs):
         self.recreate_db()
@@ -235,6 +247,7 @@ class Command(ColourMixin):
         print ''
         self.write_observations()
 
+        print ''
         print self.colourise('Done!', 'green')
 
 
